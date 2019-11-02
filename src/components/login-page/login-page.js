@@ -63,50 +63,47 @@ export default function LoginPage(props) {
     console.log(inputValueSurname);
   }
   return (
-    <div style={{ paddingTop: 100 }}>
-      <div>{props.userName}</div>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <div>{console.log(props)}</div>
-          <div>{props.surname}</div>
-          <Typography component="h1" variant="h5">
-            Fill the fields
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <div>{console.log(props)}</div>
+        <div>{props.surname}</div>
+        <Typography component="h1" variant="h5">
+          Fill the fields
         </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="name"
-              label="Your name"
-              name="name"
-              onChange={handleChangeName}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              name="surname"
-              label="Your surname"
-              id="surname"
-              onChange={handleChangeSurname}
-            />
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={handleClick}
-            >
-              Save
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            id="name"
+            label="Your name"
+            name="name"
+            onChange={handleChangeName}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="surname"
+            label="Your surname"
+            id="surname"
+            onChange={handleChangeSurname}
+          />
+          <Button
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={handleClick}
+          >
+            Save
           </Button>
-          </form>
-        </div>
-        <Box mt={2}>
-          <Copyright />
-        </Box>
-      </Container>
-    </div>
+        </form>
+      </div>
+      <Box mt={2}>
+        <Copyright />
+      </Box>
+    </Container>
   );
 }
