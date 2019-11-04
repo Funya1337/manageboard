@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -7,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { setUsernameAC } from '../../index';
 
 function Copyright() {
   return (
@@ -47,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function LoginPage(props) {
+function LoginPage(props) {
   const classes = useStyles();
   let [inputValueName, setInputValueName] = React.useState(0);
   let [inputValueSurname, setInputValueSurname] = React.useState(0);
@@ -58,18 +61,13 @@ export default function LoginPage(props) {
     setInputValueSurname(inputValueSurname = e.target.value);
   }
   const handleClick = () => {
-    props.onChangeName(inputValueName);
-    console.log(inputValueName);
-    console.log(inputValueSurname);
+    props.setUsername(inputValueName, inputValueSurname);
   }
   return (
     <div style={{ paddingTop: 100 }}>
-      <div>{props.userName}</div>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <div>{console.log(props)}</div>
-          <div>{props.surname}</div>
           <Typography component="h1" variant="h5">
             Fill the fields
         </Typography>
@@ -110,3 +108,9 @@ export default function LoginPage(props) {
     </div>
   );
 }
+export default connect(
+  null,
+  dispatch => bindActionCreators({
+    setUsername: setUsernameAC,
+  }, dispatch)
+)(LoginPage);

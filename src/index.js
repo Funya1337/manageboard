@@ -5,17 +5,54 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import * as serviceWorker from './serviceWorker';
 
-function playlist(state= ["boris"], action) {
-  if (action.type === 'ADD_TRACK') {
-    return [
-      ...state,
-      action.payload
-    ];
+// ACTION TYPES
+const SET_USERNAME = 'SET_USERNAME';
+const TYPE_SOMETHING = 'TYPE_SOMETHING';
+
+// ACTION CREATOR
+export const setUsernameAC = (username, surname) => ({
+  type: SET_USERNAME,
+  payload: {
+    username,
+    surname,
   }
-  return state;
+})
+
+export const typeSomethingAC = (text) => ({
+  type: TYPE_SOMETHING,
+  payload: {
+    text
+  }
+})
+
+const initialState = {
+  username: '',
+  surname: '',
+  text: ''
 }
 
-const store = createStore(playlist);
+// REDUCER
+const mainReducer = (state=initialState, action) => {
+  console.log(action);
+  console.log(state);
+  switch (action.type) {
+    case SET_USERNAME:
+    return {
+      ...state,
+      username: action.payload.username,
+      surname: action.payload.surname,
+    }
+    case TYPE_SOMETHING:
+      return {
+        ...state,
+        text: action.payload.text,
+      }
+    default:
+      return state;
+  }
+}
+
+const store = createStore(mainReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 
 ReactDOM.render(

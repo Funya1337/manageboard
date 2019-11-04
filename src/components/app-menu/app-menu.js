@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { useHistory } from "react-router-dom";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { connect } from 'react-redux';
 import useStyles from './style';
 
 function AppMenu(props) {
@@ -27,13 +28,15 @@ function AppMenu(props) {
     <div className={classes.container}>
       <AppBar position="absolute">
         <Toolbar>
-          <div>{props.userName}</div>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
+          <div>{props.username}</div>
+          <div>{props.surname}</div>
+          <div>{props.text}</div>
           <Button className={classes.popupClass} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
             Open Menu
           </Button>
@@ -53,4 +56,10 @@ function AppMenu(props) {
     </div>
   );
 }
-export default AppMenu;
+export default connect(
+  state => ({
+    username: state.username,
+    surname: state.surname,
+    text: state.text
+  })
+)(AppMenu);
