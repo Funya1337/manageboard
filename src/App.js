@@ -1,8 +1,9 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 import AppMenu from "./components/app-menu/app-menu";
-import Adminpage from "./containers/adminpage/adminpage";
-import UserPage from "./containers/userpage/userpage";
+import Aboutuser from "./containers/aboutuser/aboutuser";
+import Comment from "./containers/comment/comment";
+import Aboutme from "./containers/aboutme/aboutme";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends React.Component {
@@ -11,13 +12,14 @@ class App extends React.Component {
     return (
       <div>
         <Router>
-          <AppMenu/>
-          <Route exact path="/"/>
-          <Route exact path='/admin' component={() => <Adminpage/>}/>
-          <Route exact path='/user' component={() => <UserPage/>}/>
+          <AppMenu />
+          <Route exact path="/" />
+          <Route exact path="/aboutuser" component={() => <Aboutuser />} />
+          <Route exact path="/comment" component={() => <Comment />} />
+          <Route exact path="/aboutme" component={() => <Aboutme />} />
         </Router>
       </div>
-    )
+    );
   }
 }
 

@@ -1,48 +1,48 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { typeSomethingAC } from '../../index';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { typeSomethingAC } from "../../index";
 
 const useStyles = makeStyles(theme => ({
-  '@global': {
+  "@global": {
     body: {
-      backgroundColor: theme.palette.common.white,
-    },
+      backgroundColor: theme.palette.common.white
+    }
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: "#3f51b5"
-  },
+  }
 }));
 
-function UserPage(props) {
+function Comment(props) {
   const classes = useStyles();
   let [inputValueName, setInputValueName] = React.useState(0);
-  const handleChangeName = (e) => {
-    setInputValueName(inputValueName = e.target.value);
-  }
+  const handleChangeName = e => {
+    setInputValueName((inputValueName = e.target.value));
+  };
   const handleClick = () => {
     props.typeSomething(inputValueName);
-  }
+  };
   return (
     <div style={{ paddingTop: 100 }}>
       <Container component="main" maxWidth="xs">
@@ -64,7 +64,7 @@ function UserPage(props) {
               onClick={handleClick}
             >
               Submit
-          </Button>
+            </Button>
           </form>
         </div>
       </Container>
@@ -73,7 +73,11 @@ function UserPage(props) {
 }
 export default connect(
   null,
-  dispatch => bindActionCreators({
-    typeSomething: typeSomethingAC,
-  }, dispatch)
-)(UserPage);
+  dispatch =>
+    bindActionCreators(
+      {
+        typeSomething: typeSomethingAC
+      },
+      dispatch
+    )
+)(Comment);

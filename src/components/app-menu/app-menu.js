@@ -1,17 +1,16 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 import { useHistory } from "react-router-dom";
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import { connect } from 'react-redux';
-import useStyles from './style';
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import useStyles from "./style";
 
-function AppMenu(props) {
+export default function AppMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const history = useHistory();
@@ -20,7 +19,7 @@ function AppMenu(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (path) => () => {
+  const handleClose = path => () => {
     setAnchorEl(null);
     history.push(path);
   };
@@ -28,16 +27,23 @@ function AppMenu(props) {
     <div className={classes.container}>
       <AppBar position="absolute">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             News
           </Typography>
-          <div>{props.username}</div>
-          <div>{props.surname}</div>
-          <div>{props.text}</div>
-          <Button className={classes.popupClass} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+          <Button
+            className={classes.popupClass}
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
             Open Menu
           </Button>
           <Menu
@@ -47,19 +53,15 @@ function AppMenu(props) {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose('/')}>Main</MenuItem>
-            <MenuItem onClick={handleClose('/admin')}>Admin</MenuItem>
-            <MenuItem onClick={handleClose('/user')}>User</MenuItem>
+            <MenuItem onClick={handleClose("/")}>Main</MenuItem>
+            <MenuItem onClick={handleClose("/aboutuser")}>
+              Fill user data
+            </MenuItem>
+            <MenuItem onClick={handleClose("/comment")}>Leave comment</MenuItem>
+            <MenuItem onClick={handleClose("/aboutme")}>About me</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
-export default connect(
-  state => ({
-    username: state.username,
-    surname: state.surname,
-    text: state.text
-  })
-)(AppMenu);
